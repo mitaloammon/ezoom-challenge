@@ -137,7 +137,7 @@ A API estará disponível em: `http://localhost:8080`
 
 ## ✅ Pré-requisitos
 
-1. **Node.js and npm** installed.
+1. **Node.js e npm** instalados.
 2. **Ionic CLI** globalmente instalado:
    ```bash
    npm install -g @ionic/cli

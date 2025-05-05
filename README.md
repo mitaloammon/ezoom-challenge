@@ -109,7 +109,7 @@ A API estará disponível em: `http://localhost:8080`
 - ✅ API REST com validação e ordenação
 - ✅ Integração completa entre frontend e backend
 - ✅ Interface responsiva com Ionic
-- ✅ Componente de loading e refresh de notificações
+- ⏳ Componente de loading e refresh de notificações
 - ⏳ Marcar como lida (em progresso ou futuro)
 
 ---

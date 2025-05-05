@@ -47,7 +47,7 @@ class NotificationController extends ResourceController
 
         $formated = array_map(function ($item) {
             $timestamp = strtotime($item['created_at']);
-            $item['date'] = date('Y-m-d', $timestamp);
+            $item['date'] = date('d-m-Y', $timestamp);
             $item['time'] = date('H:i:s', $timestamp);
             unset($item['created_at']);
             return $item;
@@ -67,7 +67,7 @@ class NotificationController extends ResourceController
 
         $formatted = array_map(function ($item) {
             $timestamp = strtotime($item['created_at']);
-            $item['date'] = date('Y-m-d', $timestamp);
+            $item['date'] = date('d-m-Y', $timestamp);
             $item['time'] = date('H:i:s', $timestamp);
             unset($item['created_at']);
             return $item;

@@ -8,22 +8,22 @@
       </ion-toolbar>
     </ion-header>
 
-    <ion-content :fullscreen="true" v-if="message">
+    <ion-content :fullscreen="true" v-if="notification">
       <ion-item>
         <ion-icon aria-hidden="true" :icon="personCircle" color="primary"></ion-icon>
         <ion-label class="ion-text-wrap">
           <h2>
-            Usuário #{{ message.user_id }}
+            Usuário #{{ notification.user_id }}
             <span class="date">
-              <ion-note>{{ message.date }} {{ message.time }}</ion-note>
+              <ion-note>{{ notification.date }} | {{ notification.time }}</ion-note>
             </span>
           </h2>
         </ion-label>
       </ion-item>
 
       <div class="ion-padding">
-        <h1>{{ message.title }}</h1>
-        <p>{{ message.message }}</p>
+        <h1>{{ notification.title }}</h1>
+        <p>{{ notification.message }}</p>
       </div>
     </ion-content>
   </ion-page>
@@ -55,13 +55,13 @@ const getBackButtonText = () => {
 };
 
 const route = useRoute();
-const message = ref<any>(null);
+const notification = ref<any>(null);
 
 onMounted(async () => {
   try {
     const id = route.params.id;
     const response = await axios.get(`http://localhost:8080/api/notifications/${id}`);
-    message.value = response.data;
+    notification.value = response.data;
   } catch (error) {
     console.error('Erro ao carregar notificação:', error);
   }

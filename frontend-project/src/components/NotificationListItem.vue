@@ -1,7 +1,7 @@
 <template>
   <ion-item
-    v-if="message"
-    :routerLink="'/notification/' + message.id"
+    v-if="notification"
+    :routerLink="'/notification/' + notification.id"
     :detail="false"
     class="list-item"
   >
@@ -9,14 +9,15 @@
 
     <ion-label class="ion-text-wrap">
       <h2>
-        Usuário {{ message.user_id }}
+        Usuário {{ notification.user_id }}
         <span class="date">
-          <ion-note>{{ message.date }} {{ message.time }}</ion-note>
+          <ion-note>{{ notification.date }} | {{ notification.time }}</ion-note>
+          
           <ion-icon aria-hidden="true" :icon="chevronForward" size="small" v-if="isIos()" />
         </span>
       </h2>
-      <h3>{{ message.title }}</h3>
-      <p>{{ message.message }}</p>
+      <h3>  {{ notification.title }}</h3>
+      <p> {{ notification.message }}</p>
     </ion-label>
   </ion-item>
 </template>
@@ -35,7 +36,7 @@ interface Notification {
 }
 
 defineProps<{
-  message: Notification;
+  notification: Notification;
 }>();
 
 const isIos = () => {

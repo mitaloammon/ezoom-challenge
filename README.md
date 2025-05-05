@@ -36,6 +36,28 @@ Este projeto consiste em uma aplicação completa (frontend em **Ionic + Vue.js*
    composer install
    ```
 
+### 📦 Configuração do Banco de Dados
+
+1. Crie uma base de dados com o nome **`ezoom`**.
+
+2. Em seguida, execute o seguinte script SQL para criar a tabela **`notifications`**, que será utilizada no projeto:
+
+```sql
+
+CREATE TABLE `notifications` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` INT(10) UNSIGNED NOT NULL,
+  `title` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+  `message` TEXT NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+  `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`) USING BTREE
+)
+COLLATE='utf8mb4_0900_ai_ci'
+ENGINE=InnoDB;
+```
+
+> 🔔 Esta tabela será utilizada para armazenar as notificações enviadas aos usuários.
+
 3. Configure o `.env`:
    Copie o arquivo `.env.example` para `.env` e configure os dados do banco:
    ```dotenv
@@ -88,7 +110,7 @@ A API estará disponível em: `http://localhost:8080`
 - ✅ Integração completa entre frontend e backend
 - ✅ Interface responsiva com Ionic
 - ✅ Componente de loading e refresh de notificações
-- ✅ Marcar como lida (em progresso ou futuro)
+- ⏳ Marcar como lida (em progresso ou futuro)
 
 ---
 
@@ -97,7 +119,7 @@ A API estará disponível em: `http://localhost:8080`
 ### No App:
 
 - **HomePage**: Lista as notificações do usuário
-- **ViewMessagePage**: Exibe detalhes da notificação
+- **ViewNotificationPage**: Exibe detalhes da notificação
 
 ---
 

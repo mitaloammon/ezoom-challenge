@@ -42,9 +42,9 @@ class NotificationModel extends Model
 
     public function getAllNotifications($limit = 100)
     {
-    return $this->orderBy('created_at', 'DESC')
-                ->limit($limit)
-                ->findAll();
+        return $this->orderBy('created_at', 'DESC')
+                    ->limit($limit)
+                    ->findAll();
     }
 
 }

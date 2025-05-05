@@ -1,7 +1,7 @@
 <template>
   <ion-item
     v-if="notification"
-    :routerLink="'/notification/' + notification.id"
+    :routerLink="'/notifications/' + notification.id"
     :detail="false"
     class="list-item"
   >

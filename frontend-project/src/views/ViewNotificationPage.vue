@@ -60,6 +60,7 @@ const notification = ref<any>(null);
 onMounted(async () => {
   try {
     const id = route.params.id;
+    //console.log(id);
     const response = await axios.get(`http://localhost:8080/api/notifications/${id}`);
     notification.value = response.data;
   } catch (error) {

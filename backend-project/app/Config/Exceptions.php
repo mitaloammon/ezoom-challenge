@@ -24,6 +24,8 @@ class Exceptions extends BaseConfig
      */
     public bool $log = true;
 
+    public $display = true;
+
     /**
      * --------------------------------------------------------------------------
      * DO NOT LOG STATUS CODES

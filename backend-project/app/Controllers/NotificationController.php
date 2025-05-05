@@ -18,7 +18,7 @@ class NotificationController extends ResourceController
    
     public function create()
     {
-        $data = $this->request->getJSON(true);
+        $data = $this->request->getPost();
 
         if ($this->notificationModel->existsForUserAndTitle($data['user_id'], $data['title'])) {
             return $this->fail('Já existe uma notificação para este usuário.');
@@ -31,31 +31,28 @@ class NotificationController extends ResourceController
         return $this->respondCreated(['message' => 'Notificação enviada com sucesso.']);
         
     }
-    
 
-    public function list($userId = null)
+    public function show($id = null)
     {
-        if (!is_numeric($userId) || (int)$userId <= 0) {
-            return $this->failValidationErrors('O ID do usuário deve ser um número inteiro válido.');
-        }
-        
-        $data = $this->notificationModel->getNotificationsByUser((int)$userId);
-
-        if (empty($data)) {
-            return $this->failNotFound('Não foram encontradas notificações para este usuário.');
+        if (!is_numeric($id) || (int)$id <= 0) {
+            return $this->failValidationErrors('O ID deve ser um número inteiro válido.');
         }
 
-        $formated = array_map(function ($item) {
-            $timestamp = strtotime($item['created_at']);
-            $item['date'] = date('d-m-Y', $timestamp);
-            $item['time'] = date('H:i:s', $timestamp);
-            unset($item['created_at']);
-            return $item;
-        }, $data);
-    
-        return $this->respond($formated);
-        
+        $data = $this->notificationModel->find($id);
+
+        if (!$data) {
+            return $this->failNotFound('Notificação não encontrada.');
+        }
+
+        $timestamp = strtotime($data['created_at']);
+        $data['date'] = date('d-m-Y', $timestamp);
+        $data['time'] = date('H:i', $timestamp);
+        unset($data['created_at']);
+
+        return $this->respond($data);
     }
+
+
 
     public function all()
     {
@@ -68,7 +65,7 @@ class NotificationController extends ResourceController
         $formatted = array_map(function ($item) {
             $timestamp = strtotime($item['created_at']);
             $item['date'] = date('d-m-Y', $timestamp);
-            $item['time'] = date('H:i:s', $timestamp);
+            $item['time'] = date('H:i', $timestamp);
             unset($item['created_at']);
             return $item;
         }, $data);
